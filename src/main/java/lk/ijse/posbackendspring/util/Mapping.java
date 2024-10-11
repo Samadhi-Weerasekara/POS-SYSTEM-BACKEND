@@ -1,9 +1,10 @@
 package lk.ijse.posbackendspring.util;
 
-import lk.ijse.gdse.aad68.notetaker.dto.impl.NoteDTO;
-import lk.ijse.gdse.aad68.notetaker.dto.impl.UserDTO;
-import lk.ijse.gdse.aad68.notetaker.entity.NoteEntity;
-import lk.ijse.gdse.aad68.notetaker.entity.UserEntity;
+
+import lk.ijse.posbackendspring.dto.impl.CustomerDTO;
+import lk.ijse.posbackendspring.dto.impl.ItemDTO;
+import lk.ijse.posbackendspring.entity.CustomerEntity;
+import lk.ijse.posbackendspring.entity.ItemEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,28 +14,31 @@ import java.util.List;
 
 @Component
 public class Mapping {
+
     @Autowired
     private ModelMapper modelMapper;
 
-    //matters of NoteEntity and DTO
-    public NoteDTO convertToDTO(NoteEntity note) {
-        return modelMapper.map(note, NoteDTO.class);
+    //matters of customer Entity and customer DTO
+    public CustomerDTO convertToDTO(CustomerEntity customer) {
+        return modelMapper.map(customer, CustomerDTO.class);
     }
-    public NoteEntity convertToEntity(NoteDTO dto) {
-        return modelMapper.map(dto, NoteEntity.class);
+    public CustomerEntity convertToEntity(CustomerDTO dto) {
+        return modelMapper.map(dto, CustomerEntity.class);
     }
-    public List<NoteDTO> convertToDTO(List<NoteEntity> notes) {
-        return modelMapper.map(notes, new TypeToken<List<NoteDTO>>() {}.getType());
+    public List<CustomerDTO> convertToDTO(List<CustomerEntity> customers) {
+        return modelMapper.map(customers, new TypeToken<List<CustomerDTO>>() {}.getType());
     }
-    //User matters mapping
-    public UserEntity convertToUserEntity(UserDTO userDTO) {
-        return modelMapper.map(userDTO, UserEntity.class);
+    //item matters mapping
+
+    public ItemDTO convertToDTO(ItemEntity item) {
+        return modelMapper.map(item, ItemDTO.class);
     }
-    public UserDTO convertToUserDTO(UserEntity userEntity) {
-        return modelMapper.map(userEntity, UserDTO.class);
+    public ItemEntity convertToEntity(ItemDTO dto) {
+        return modelMapper.map(dto, ItemEntity.class);
     }
-    public List<UserDTO> convertUserToDTOList(List<UserEntity> userEntities) {
-        return modelMapper.map(userEntities, new TypeToken<List<UserDTO>>() {}.getType());
+    public List<ItemDTO> convertItemToDTOList(List<ItemEntity> items) {
+        return modelMapper.map(items, new TypeToken<List<ItemDTO>>() {}.getType());
     }
+
 
 }
