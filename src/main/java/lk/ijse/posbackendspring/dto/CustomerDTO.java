@@ -13,5 +13,5 @@ public class CustomerDTO  implements SuperDTO, CustomerResponse {
     private String customerId;
     private String customerName;
     private String customerAddress;
-    private String customerSalary;
+    private int contactNumber;
 }

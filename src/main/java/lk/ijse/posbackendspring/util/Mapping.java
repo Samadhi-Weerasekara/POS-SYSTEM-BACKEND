@@ -1,6 +1,7 @@
 package lk.ijse.posbackendspring.util;
 
 
+import lk.ijse.posbackendspring.customObj.CustomerResponse;
 import lk.ijse.posbackendspring.dto.CustomerDTO;
 import lk.ijse.posbackendspring.dto.ItemDTO;
 import lk.ijse.posbackendspring.entity.CustomerEntity;
@@ -22,12 +23,7 @@ public class Mapping {
     public CustomerDTO convertToDTO(CustomerEntity customer) {
         return modelMapper.map(customer, CustomerDTO.class);
     }
-    public CustomerEntity convertToEntity(CustomerDTO dto) {
-        return modelMapper.map(dto, CustomerEntity.class);
-    }
-    public List<CustomerDTO> convertToDTO(List<CustomerEntity> customers) {
-        return modelMapper.map(customers, new TypeToken<List<CustomerDTO>>() {}.getType());
-    }
+
     //item matters mapping
 
     public ItemDTO convertToDTO(ItemEntity item) {
@@ -38,6 +34,16 @@ public class Mapping {
     }
     public List<ItemDTO> convertItemToDTOList(List<ItemEntity> items) {
         return modelMapper.map(items, new TypeToken<List<ItemDTO>>() {}.getType());
+    }
+
+
+    public CustomerEntity convertCustomerDTOToCustomerEntity(CustomerDTO customerDTO) {
+        return modelMapper.map(customerDTO, CustomerEntity.class);
+    }
+
+    public List<CustomerDTO> convertCustomerEntityListToCustomerDTOList(List<CustomerEntity> customers) {
+        return modelMapper.map(customers, new TypeToken<List<CustomerDTO>>() {}.getType());
+
     }
 
 
