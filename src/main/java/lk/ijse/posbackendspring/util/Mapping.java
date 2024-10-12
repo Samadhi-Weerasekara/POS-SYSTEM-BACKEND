@@ -1,8 +1,8 @@
 package lk.ijse.posbackendspring.util;
 
 
-import lk.ijse.posbackendspring.dto.impl.CustomerDTO;
-import lk.ijse.posbackendspring.dto.impl.ItemDTO;
+import lk.ijse.posbackendspring.dto.CustomerDTO;
+import lk.ijse.posbackendspring.dto.ItemDTO;
 import lk.ijse.posbackendspring.entity.CustomerEntity;
 import lk.ijse.posbackendspring.entity.ItemEntity;
 import org.modelmapper.ModelMapper;

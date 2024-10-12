@@ -1,4 +1,4 @@
-package lk.ijse.posbackendspring.dto.impl;
+package lk.ijse.posbackendspring.dto;
 
 import lk.ijse.posbackendspring.customObj.CustomerResponse;
 import lk.ijse.posbackendspring.dto.SuperDTO;

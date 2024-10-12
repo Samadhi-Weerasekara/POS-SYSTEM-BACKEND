@@ -16,8 +16,11 @@ import java.io.Serializable;
 public class OrderDetailEntity implements Serializable {
     @Id
     private String itemId;
+    @Id
+    private String orderId;
     private String itemName;
     private int itemQty;
-    private double unitPrice;
-    private String itemImage;
+    private double Price;
+
+
 }

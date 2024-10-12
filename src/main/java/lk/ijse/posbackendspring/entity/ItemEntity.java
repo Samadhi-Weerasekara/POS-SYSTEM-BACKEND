@@ -16,7 +16,7 @@ public class ItemEntity  implements SuperEntity{
     @Id
     private String itemCode;
     private String itemName;
-    private int itemQty;
+    private int itemQtyOnHand;
     private double unitPrice;
     private String itemImage;
 }
