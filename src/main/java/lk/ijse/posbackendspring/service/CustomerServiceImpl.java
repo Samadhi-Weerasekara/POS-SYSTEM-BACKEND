@@ -1,12 +1,14 @@
 package lk.ijse.posbackendspring.service;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.posbackendspring.customObj.CustomerErrorResponse;
 import lk.ijse.posbackendspring.customObj.CustomerResponse;
 import lk.ijse.posbackendspring.dao.CustomerDao;
 import lk.ijse.posbackendspring.dto.CustomerDTO;
 import lk.ijse.posbackendspring.entity.CustomerEntity;
 import lk.ijse.posbackendspring.exception.CustomerNotFoundException;
 import lk.ijse.posbackendspring.exception.DataPersistFailedException;
+import lk.ijse.posbackendspring.util.AppUtil;
 import lk.ijse.posbackendspring.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService{
     private Mapping mapping;
     @Override
     public void saveCustomer(CustomerDTO customerDTO) {
+        customerDTO.setCustomerId(AppUtil.createCustomerId());
         CustomerEntity save = customerDao.save(mapping.convertCustomerDTOToCustomerEntity(customerDTO));
         if (save == null){
             throw new DataPersistFailedException("cannot save customer");
@@ -41,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService{
         if (customerDao.existsById(id)) {
             return mapping.convertToDTO(customerDao.getReferenceById(id));
         }else {
-            throw new CustomerNotFoundException("Customer not found");
+            return new CustomerErrorResponse(0,"Customer not found");
         }
     }
 

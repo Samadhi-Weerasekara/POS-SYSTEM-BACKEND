@@ -48,14 +48,14 @@ public class CustomerController {
         }
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "allcustomers",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDTO> getAllCustomers() {
         logger.info("Fetching all customers");
         return customerService.getAllCustomers();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CustomerResponse getCustomerById(@RequestParam("id") String id) {
+    public CustomerResponse getCustomerById(@PathVariable("id") String id) {
         logger.info("Fetching customer with ID: {}", id);
         return customerService.getSelectedCustomer(id);
     }
