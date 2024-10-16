@@ -1,9 +1,6 @@
 package lk.ijse.posbackendspring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +16,10 @@ public class OrderDetailEntity implements Serializable {
     private String itemId;
     private String orderId;
     private String itemName;
-    private int itemQty;
-    private double Price;
+    private int qty;
+    private double unitPrice;
+    private double total;
+
 
 
 }

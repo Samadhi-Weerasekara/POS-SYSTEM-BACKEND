@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +18,7 @@ import java.io.Serializable;
 public class OrderEntity implements Serializable {
     @Id
     private String orderId;
-    private String date;
-    private double total;
+    private LocalDateTime orderDate;
+    private double totalPrice;
     private String customerId;
-
 }
