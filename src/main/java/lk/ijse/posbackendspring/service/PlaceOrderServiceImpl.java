@@ -48,7 +48,7 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
             // Set the orderId in the OrderDetailEntity
             orderDetailsEntity.setOrderId(savedOrder.getOrderId()); // Ensure this is set
 
-            orderDetailsEntity.setItemId(orderDetailsDTO.getItemCode());
+            orderDetailsEntity.setItemId(orderDetailsDTO.getItemId());
             orderDetailsEntity.setItemName(orderDetailsDTO.getItemName());
             orderDetailsEntity.setQty(orderDetailsDTO.getQty());
             orderDetailsEntity.setUnitPrice(orderDetailsDTO.getUnitPrice());
@@ -68,5 +68,5 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
     @Override
     public List<OrderDetailsDTO> getOrderDetails() {
         return mapping.convertOrderDetailEntityListToOrderDetailDTOList(orderDetailsDAO.findAll());
-}
     }
+}

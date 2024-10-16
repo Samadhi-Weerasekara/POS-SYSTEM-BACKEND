@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OrderDetailsDTO implements SuperDTO, OrderDetailResponse {
-    private String itemCode;
+    private String itemId;
     private String orderId;
     private String itemName;
     private int qty;
