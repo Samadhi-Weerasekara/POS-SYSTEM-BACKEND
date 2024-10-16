@@ -11,14 +11,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "item")
 @Entity
+@Table(name = "item")
+public class ItemEntity implements SuperEntity {
 
-public class ItemEntity  implements SuperEntity{
     @Id
+    @Column(name = "itemCode", nullable = false, length = 255)
     private String itemCode;
-    private String itemName;
-    private int itemQtyOnHand;
-    private double unitPrice;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String itemImage;
+
+    @Column(name = "itemName", nullable = false, length = 255)
+    private String itemName;
+
+    @Column(name = "itemQtyOnHand", nullable = false)
+    private int itemQtyOnHand;
+
+    @Column(name = "unitPrice", nullable = false)
+    private double unitPrice;
 }

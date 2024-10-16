@@ -13,9 +13,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableJpaRepositories(basePackages = "lk.ijse.posbackendspring")
 @EnableTransactionManagement
 @MultipartConfig(
-        fileSizeThreshold = 1024 * 1024 * 2, //2MB
+        fileSizeThreshold = 1024 * 1024 * 10, //2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
-        maxRequestSize = 1024 * 1024 * 50 // 50MB
+        maxRequestSize = 1024 * 1024 * 10 // 50MB
 )
 public class WebAppConfig {
+
 }

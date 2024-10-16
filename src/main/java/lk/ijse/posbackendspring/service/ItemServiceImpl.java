@@ -31,9 +31,10 @@ public class ItemServiceImpl implements ItemService {
         //send data to the dao layer
         itemDTO.setItemCode(AppUtil.createItemId());
         ItemEntity savedItem = itemDao.save(mapping.convertToEntity(itemDTO));
-        if(savedItem == null && savedItem.getItemCode() == null ) {
-            throw new DataPersistFailedException("Cannot data saved");
+        if (savedItem == null || savedItem.getItemCode() == null) {
+            throw new DataPersistFailedException("Data was not saved properly.");
         }
+
     }
 
     @Override
@@ -43,10 +44,14 @@ public class ItemServiceImpl implements ItemService {
         if (!tmpItem.isPresent()) {
             throw new ItemNotFoundException("Item not Found");
         }else{
-            tmpItem.get().setItemName(itemDTO.getItemName());
-            tmpItem.get().setItemQtyOnHand(itemDTO.getItemQty());
-            tmpItem.get().setUnitPrice(itemDTO.getUnitPrice());
-            tmpItem.get().setItemImage(itemDTO.getItemImage());
+            ItemEntity itemEntity = tmpItem.get();
+            itemEntity.setItemName(itemDTO.getItemName());
+            itemEntity.setItemQtyOnHand(itemDTO.getItemQtyOnHand());
+            itemEntity.setUnitPrice(itemDTO.getUnitPrice());
+            itemEntity.setItemImage(itemDTO.getItemImage());
+
+            // Save the updated entity
+            itemDao.save(itemEntity); // Ensure this line is present
         }
     }
     @Override

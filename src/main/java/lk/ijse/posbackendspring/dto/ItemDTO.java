@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class ItemDTO implements SuperDTO, ItemResponse {
  private String itemCode;
- private String itemName;
- private int itemQty;
- private double unitPrice;
  private String itemImage;
+ private String itemName;
+ private int itemQtyOnHand;
+ private double unitPrice;
+
 
 }

@@ -19,7 +19,8 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.posbackendspring")
 @EnableJpaRepositories(basePackages = "lk.ijse.posbackendspring")
-//@EnableTransactionManagement
+@EnableWebMvc
+@EnableTransactionManagement
 public class WebAppRootConfig {
     @Bean
     public ModelMapper modelMapper() {

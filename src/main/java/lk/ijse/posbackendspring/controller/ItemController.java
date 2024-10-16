@@ -30,32 +30,36 @@ public class ItemController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> saveItem(
-            @RequestPart("itemImage") MultipartFile itemImage,
-            @RequestPart("itemName") String itemName,
-            @RequestPart("itemQtyOnHand") int itemQtyOnHand,
-            @RequestPart("unitPrice") double unitPrice)
-            {
+            @RequestParam("itemName") String itemName,
+            @RequestParam("itemQtyOnHand") int itemQtyOnHand,
+            @RequestParam("unitPrice") double unitPrice,
+            @RequestParam("itemImage") MultipartFile itemImage) {
         try {
-
+            logger.info("Received request to save item: {}, {}, {}", itemName, itemQtyOnHand, unitPrice);
             byte[] imageBytes = itemImage.getBytes();
             String base64Image = AppUtil.toBase64ProfilePic(imageBytes);
+            logger.info("Base64 image length: {}", base64Image.length());
+
 
             // Build the DTO and send to the service
-            ItemDTO itemDTO = new ItemDTO();
-            itemDTO.setItemImage(base64Image);
-            itemDTO.setItemName(itemName);
-            itemDTO.setItemQty(itemQtyOnHand);
-            itemDTO.setUnitPrice(unitPrice);
+            ItemDTO builItemDTO = new ItemDTO();
+            builItemDTO.setItemName(itemName);
+            builItemDTO.setItemQtyOnHand(itemQtyOnHand);
+            builItemDTO.setUnitPrice(unitPrice);
+            builItemDTO.setItemImage(base64Image);
 
-
-            itemService.saveItem(itemDTO);
+            //logger.info("Saving item to the database...");
+            itemService.saveItem(builItemDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (DataPersistFailedException e){
+        } catch (DataPersistFailedException e) {
+            //logger.error("Data persistence failed", e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (Exception e){
+        } catch (Exception e) {
+           // logger.error("Internal server error", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable("id") String id){
@@ -78,12 +82,12 @@ public class ItemController {
     public List<ItemDTO> getAllItems(){
         return itemService.getAllItems();
     }
-    @PatchMapping(value = "/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PatchMapping(value = "/{itemCode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateItem(@PathVariable("itemCode") String itemCode,
-                                           @RequestPart("itemName") String updatedItemName,
-                                           @RequestPart("itemQtyOnHand") int updatedItemQtyOnHand,
-                                           @RequestPart("unitPrice") double updatedUnitPrice,
-                                           @RequestPart("itemImage") MultipartFile updatedItemImage)
+                                           @RequestParam("itemName") String updatedItemName,
+                                           @RequestParam("itemQtyOnHand") int updatedItemQtyOnHand,
+                                           @RequestParam("unitPrice") double updatedUnitPrice,
+                                           @RequestParam("itemImage") MultipartFile updatedItemImage)
     {
         try {
             byte[] imageByteCollection=updatedItemImage.getBytes();
@@ -91,7 +95,7 @@ public class ItemController {
             var updateItem = new ItemDTO();
             updateItem.setItemCode(itemCode);
             updateItem.setItemName(updatedItemName);
-            updateItem.setItemQty(updatedItemQtyOnHand);
+            updateItem.setItemQtyOnHand(updatedItemQtyOnHand);
             updateItem.setUnitPrice(updatedUnitPrice);
             updateItem.setItemImage(updateItemImage2);
             itemService.updateItem(updateItem);
