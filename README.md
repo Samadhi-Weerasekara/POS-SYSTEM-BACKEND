@@ -57,7 +57,7 @@ Technologies used in the project:
 
 <h2> API Documentation </h2>
 
-* You can view the detailed API documentation with example requests and responses <a href="[https://documenter.getpostman.com/view/35384990/2sAXxQfCXa](https://www.postman.com/aviation-cosmologist-89591147/pos-backend-spring/documentation/tpvf13b/pos-backend)">here</a>.
+* You can view the detailed API documentation with example requests and responses <a href="https://documenter.getpostman.com/view/35384895/2sAXxV6A1E"here</a>.
 
 
 <h2>🛡️ License:</h2>
