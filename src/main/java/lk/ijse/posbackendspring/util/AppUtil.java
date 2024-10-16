@@ -15,7 +15,7 @@ public class AppUtil {
         return "ORDER-"+UUID.randomUUID();
     }
 
-    public static String toBase64ProfilePic(String profilePic){
-        return Base64.getEncoder().encodeToString(profilePic.getBytes());
+    public static String toBase64ProfilePic(byte[] itemImage){
+        return Base64.getEncoder().encodeToString(itemImage);
     }
 }

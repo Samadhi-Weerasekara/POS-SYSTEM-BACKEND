@@ -1,5 +1,6 @@
 package lk.ijse.posbackendspring.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "item")
 @Entity
+
 public class ItemEntity  implements SuperEntity{
     @Id
     private String itemCode;

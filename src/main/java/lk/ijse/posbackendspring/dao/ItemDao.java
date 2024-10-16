@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository   //manage the persistence logic, allows for exception handling, and makes the class eligible for dependency injection.
 public interface ItemDao extends JpaRepository<ItemEntity,String> {
+
+    ItemEntity getItemEntityByItemCode(String id);
 }
